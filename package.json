@@ -1,0 +1,30 @@
+{
+  "name": "pkce-challenge",
+  "version": "1.0.0",
+  "description": "Generate a Proof Key for Code Exchange (PKCE)",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crouchcd/pkce-challenge.git"
+  },
+  "keywords": [
+    "PKCE",
+    "oauth2"
+  ],
+  "author": "crouchcd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crouchcd/pkce-challenge/issues"
+  },
+  "homepage": "https://github.com/crouchcd/pkce-challenge#readme",
+  "dependencies": {
+    "base64url": "^3.0.1",
+    "randomatic": "^3.1.1"
+  },
+  "devDependencies": {
+    "tap": "^12.1.1"
+  }
+}
