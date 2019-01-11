@@ -1,6 +1,6 @@
 {
   "name": "pkce-challenge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate a Proof Key for Code Exchange (PKCE)",
   "main": "index.js",
   "scripts": {
