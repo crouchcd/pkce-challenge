@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "Generate a Proof Key for Code Exchange (PKCE)",
   "main": "index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "test": "tap tests/"
   },
