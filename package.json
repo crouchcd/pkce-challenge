@@ -1,7 +1,7 @@
 {
   "name": "pkce-challenge",
-  "version": "1.0.3",
-  "description": "Generate a Proof Key for Code Exchange (PKCE)",
+  "version": "2.0.0",
+  "description": "Generate a Proof Key for Code Exchange (PKCE) challenge pair",
   "main": "index.js",
   "types": "./index.d.ts",
   "scripts": {
@@ -21,10 +21,7 @@
     "url": "https://github.com/crouchcd/pkce-challenge/issues"
   },
   "homepage": "https://github.com/crouchcd/pkce-challenge#readme",
-  "dependencies": {
-    "base64url": "^3.0.1",
-    "randomatic": "^3.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "tap": "^12.7.0"
   }

@@ -1,30 +1,29 @@
 # pkce-challenge
-Generate a Proof Key for Code Exchange (PKCE).
+Generate a Proof Key for Code Exchange (PKCE) challenge pair.
 
-Read more about the PKCE: [https://www.oauth.com/oauth2-servers/pkce/authorization-request/](https://www.oauth.com/oauth2-servers/pkce/authorization-request/)
+Read more about [PKCE](https://www.oauth.com/oauth2-servers/pkce/authorization-request/).
 
-`npm install pkce-challenge`
-
-
+## Installation
 ```
-> require('pkce-challenge')()
-{ code_verifier: 'u1ta-MQ0e7TcpHjgz33M2DcBnOQu~aMGxuiZt0QMD1C',
-  code_challenge: 'CUZX5qE8Wvye6kS_SasIsa8MMxacJftmWdsIA_iKp3I' }
+npm install pkce-challenge
 ```
 
-Specify a length for the code_verifier. The default length is **43**.
+## Usage 
+Default length for the verifier is 43
 ```
-> require('pkce-challenge')(128)
-{ code_verifier:
-   'nI1NaT05Hs~bddEOw8RGT-GA4 ... 5_MN.tFwmQIjp7ZTkGWd5PyromAS89jif',
-  code_challenge: '_RhcsOODQ3Nz32p3uf5h3geVWavRAjKwC1dMfYzviko' }
+const pkceChallenge = require('pkce-challenge');
+pkceChallenge();
+```
+gives something like:
+```
+{ 
+    code_verifier: 'u1ta-MQ0e7TcpHjgz33M2DcBnOQu~aMGxuiZt0QMD1C',
+    code_challenge: 'CUZX5qE8Wvye6kS_SasIsa8MMxacJftmWdsIA_iKp3I' 
+}
 ```
 
-Use the utilities separately
+### Specify a verifier length
 ```
-> const verifier = require('pkce-challenge').generateVerifier(43);
-> verifier
-'GB2NJDiAj9fLOd2tLsI_RgSzZzPahjpp5fVS9.iVvmD'
-> require('pkce-challenge').generateChallenge(verifier);
-'4-3NioYzK9HO7uhubCxaSFp6tKg0pijyuMcGAwHm9bA'
+const challenge = pkceChallenge(128);
+expect(challenge.code_verifier.length).equals(128);
 ```

@@ -1,12 +1,13 @@
-// Type definitions for randomatic 3.1
+// Type definitions for pkce-challenge 2.0
 // Project: https://github.com/crouchcd/pkce-challenge
-// Definitions by: Tobias Kopelke <https://github.com/lordnox>
+// Definitions by: 
+// Tobias Kopelke <https://github.com/lordnox>,
+// Cameron Crouch <https://github.com/crouchcd>
+
 
 declare module 'pkce-challenge' {
-  export declare function generateVerifier(length: number): string;
-  export declare function generateChallenge(code_verifier: string): string;
-  export default function generatePKCE(length?: number): {
-      code_verifier: string;
-      code_challenge: string;
+  export default function pkceChallenge(length?: number): {
+    code_challenge: string;
+    code_verifier: string;
   };
 }
