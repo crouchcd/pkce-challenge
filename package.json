@@ -1,7 +1,7 @@
 {
   "name": "pkce-challenge",
-  "version": "2.0.0",
-  "description": "Generate a Proof Key for Code Exchange (PKCE) challenge pair",
+  "version": "2.1.0",
+  "description": "Generate or verify a Proof Key for Code Exchange (PKCE) challenge pair",
   "main": "index.js",
   "types": "./index.d.ts",
   "scripts": {

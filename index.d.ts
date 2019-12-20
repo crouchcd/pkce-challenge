@@ -10,4 +10,8 @@ declare module 'pkce-challenge' {
     code_challenge: string;
     code_verifier: string;
   };
+  export function verifyChallenge(
+    code_verifier: string, 
+    expectedChallenge: string
+  ): boolean;
 }
