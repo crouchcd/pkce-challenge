@@ -32,4 +32,5 @@
 - [lordnox]
 
 [lordnox]: https://github.com/lordnox
+[2.1.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.1.0
 [2.0.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.0.0
