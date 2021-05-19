@@ -85,3 +85,4 @@ function verifyChallenge(code_verifier, expectedChallenge) {
 }
 
 module.exports.verifyChallenge = verifyChallenge;
+module.exports.generateChallenge = generateChallenge;
