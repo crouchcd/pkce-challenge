@@ -1,6 +1,6 @@
 const { test } = require("tap");
 const pkceChallenge = require("../index");
-const { verifyChallenge } = pkceChallenge;
+const { verifyChallenge, generateChallenge } = pkceChallenge;
 
 test("default verifier length is 43", t => {
   t.is(pkceChallenge().code_verifier.length, 43);
@@ -59,5 +59,12 @@ test("verifyChallenge should return false", t => {
     ),
     false
   );
+  t.end();
+});
+
+test("generateChallenge should create a consistent challenge from a code_verifier", (t) => {
+  const challengePair = pkceChallenge();
+  const code_challenge = generateChallenge(challengePair.code_verifier);
+  t.is(code_challenge, challengePair.code_challenge);
   t.end();
 });
