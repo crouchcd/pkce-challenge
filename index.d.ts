@@ -1,4 +1,4 @@
-// Type definitions for pkce-challenge 2.0
+// Type definitions for pkce-challenge 2.2.0
 // Project: https://github.com/crouchcd/pkce-challenge
 // Definitions by:
 // Tobias Kopelke <https://github.com/lordnox>,

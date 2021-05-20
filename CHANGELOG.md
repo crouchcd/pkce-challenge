@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.2.0] - 2021-05-19
+
+### Added
+
+- `generateChallenge` exported from index
+
+### Contributors
+
+- [SeyyedKhandon]
+
 ## [2.1.0] - 2019-12-20
 
 ### Added
@@ -31,6 +41,8 @@
 
 - [lordnox]
 
+[seyyedkhandon]: https://github.com/SeyyedKhandon
 [lordnox]: https://github.com/lordnox
+[2.2.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.2.0
 [2.1.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.1.0
 [2.0.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.0.0
