@@ -29,6 +29,19 @@ gives something like:
 }
 ```
 
+### TypeScript usage
+
+To use the package in TypeScript, the flag `esModuleInterop: true` must be set in the project's `tsconfig.json`.
+Then, the package can be import and used as follows.
+
+```js
+import * as pkceChallenge from "pkce-challenge";
+
+pkceChallenge.default();
+pkceChallenge.generateChallenge();
+pkceChallenge.verifyChallenge();
+```
+
 ### Specify a verifier length
 
 ```js
