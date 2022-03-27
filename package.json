@@ -2,36 +2,9 @@
   "name": "pkce-challenge",
   "version": "2.2.0",
   "description": "Generate or verify a Proof Key for Code Exchange (PKCE) challenge pair",
-  "legacy": "dist/legacy.js",
-  "types-legacy": "dist/legacy.d.ts",
-  "module": "dist/modern.js",
-  "types": "dist/modern.d.ts",
-  "targets": {
-    "legacy": {
-      "source": "src/legacy.ts",
-      "isLibrary": true,
-      "context": "node",
-      "sourceMap": false
-    },
-    "types-legacy": {
-      "source": "src/legacy.ts",
-      "sourceMap": false
-    },
-    "module": {
-      "source": "src/modern.ts",
-      "sourceMap": false
-    },
-    "types": {
-      "source": "src/modern.ts",
-      "sourceMap": false
-    }
-  },
-  "files": [
-    "dist/"
-  ],
+  "main": "index.js",
+  "types": "./index.d.ts",
   "scripts": {
-    "watch": "parcel watch",
-    "build": "parcel build",
     "test": "tap tests/"
   },
   "repository": {
@@ -50,11 +23,6 @@
   "homepage": "https://github.com/crouchcd/pkce-challenge#readme",
   "dependencies": {},
   "devDependencies": {
-    "@parcel/packager-ts": "^2.4.0",
-    "@parcel/transformer-typescript-types": "^2.4.0",
-    "@types/node": "^17.0.23",
-    "parcel": "^2.4.0",
-    "tap": "^12.7.0",
-    "typescript": "^4.6.3"
+    "tap": "^12.7.0"
   }
 }

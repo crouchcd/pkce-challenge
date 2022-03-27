@@ -1,6 +1,6 @@
 const { test } = require("tap");
-let pkceChallenge = require("../dist/legacy").default;
-const { verifyChallenge, generateChallenge } = require("../dist/legacy");
+const pkceChallenge = require("../index");
+const { verifyChallenge, generateChallenge } = pkceChallenge;
 
 test("default verifier length is 43", (t) => {
   t.is(pkceChallenge().code_verifier.length, 43);
