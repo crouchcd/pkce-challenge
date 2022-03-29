@@ -15,7 +15,9 @@ npm install pkce-challenge
 Default length for the verifier is 43
 
 ```js
-const pkceChallenge = require("pkce-challenge");
+import pkceChallenge from 'pkce-challenge'
+// or require with commonjs
+const pkceChallenge = require("pkce-challenge").default;
 
 pkceChallenge();
 ```
@@ -29,19 +31,6 @@ gives something like:
 }
 ```
 
-### TypeScript usage
-
-To use the package in TypeScript, the flag `esModuleInterop: true` must be set in the project's `tsconfig.json`.
-Then, the package can be import and used as follows.
-
-```js
-import * as pkceChallenge from "pkce-challenge";
-
-pkceChallenge.default();
-pkceChallenge.generateChallenge();
-pkceChallenge.verifyChallenge();
-```
-
 ### Specify a verifier length
 
 ```js
@@ -53,7 +42,7 @@ challenge.code_verifier.length === 128; // true
 ### Challenge verification
 
 ```js
-const { verifyChallenge } = require("pkce-challenge");
+import { verifyChallenge } from "pkce-challenge";
 
 verifyChallenge(challenge.code_verifier, challenge.code_challenge) === true; // true
 ```
@@ -61,7 +50,7 @@ verifyChallenge(challenge.code_verifier, challenge.code_challenge) === true; // 
 ### Challenge generation from existing code verifier
 
 ```js
-const { generateChallenge } = require("pkce-challenge");
+import { generateChallenge } from "pkce-challenge";
 
 generateChallenge(challenge.code_verifier) === challenge.code_challenge; // true
 ```
