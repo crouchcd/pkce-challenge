@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0] - 2022-03-28
+
+- feat!: depend on crypto-js for node/browser compatibility. Using Typescript with Parcel.
+
+```js
+// commonjs
+const pkceChallenge = require("pkce-challenge").default;
+
+// es modules
+import pkceChallenge from "pkce-challenge";
+```
+
 ## [2.2.0] - 2021-05-19
 
 ### Added
@@ -43,6 +55,7 @@
 
 [seyyedkhandon]: https://github.com/SeyyedKhandon
 [lordnox]: https://github.com/lordnox
+[3.0.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/3.0.0
 [2.2.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.2.0
 [2.1.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.1.0
 [2.0.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.0.0
