@@ -1,9 +1,9 @@
 const { test } = require("tap");
-const pkceChallenge = require("../index");
-const { verifyChallenge, generateChallenge } = pkceChallenge;
+const pkceChallenge = require("../dist/main").default;
+const { verifyChallenge, generateChallenge } = require("../dist/main");
 
 test("default verifier length is 43", (t) => {
-  t.is(pkceChallenge().code_verifier.length, 43);
+  t.equal(pkceChallenge().code_verifier.length, 43);
   t.end();
 });
 
@@ -18,9 +18,9 @@ test("code_verifier pattern matches", (t) => {
 test("code_challenge pattern doesn't have [=+/]", (t) => {
   const challengePair = pkceChallenge(128);
 
-  t.doesNotHave(challengePair.code_challenge, "=");
-  t.doesNotHave(challengePair.code_challenge, "+");
-  t.doesNotHave(challengePair.code_challenge, "/");
+  t.notMatch(challengePair.code_challenge, "=");
+  t.notMatch(challengePair.code_challenge, "+");
+  t.notMatch(challengePair.code_challenge, "/");
   t.end();
 });
 
@@ -40,7 +40,7 @@ test("verifier length > 128 throws error", (t) => {
 
 test("verifyChallenge should return true", (t) => {
   const challengePair = pkceChallenge();
-  t.is(
+  t.equal(
     verifyChallenge(challengePair.code_verifier, challengePair.code_challenge),
     true
   );
@@ -49,7 +49,7 @@ test("verifyChallenge should return true", (t) => {
 
 test("verifyChallenge should return false", (t) => {
   const challengePair = pkceChallenge();
-  t.is(
+  t.equal(
     verifyChallenge(
       challengePair.code_verifier,
       challengePair.code_challenge + "a"
@@ -62,6 +62,6 @@ test("verifyChallenge should return false", (t) => {
 test("generateChallenge should create a consistent challenge from a code_verifier", (t) => {
   const challengePair = pkceChallenge();
   const code_challenge = generateChallenge(challengePair.code_verifier);
-  t.is(code_challenge, challengePair.code_challenge);
+  t.equal(code_challenge, challengePair.code_challenge);
   t.end();
 });
