@@ -1,4 +1,5 @@
-import { lib, SHA256, enc } from "crypto-js";
+import * as cryptoJS from "crypto-js";
+const { lib, SHA256, enc } = cryptoJS;
 
 /**
  * Thanks to @SEIAROTg on stackoverflow:
