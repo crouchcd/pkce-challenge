@@ -8,13 +8,24 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/module.js",
-      "require": "./dist/main.js"
+      "require": "./dist/index.js"
     }
   },
   "source": "src/index.ts",
-  "main": "dist/main.js",
+  "main": "dist/index.js",
   "module": "dist/module.js",
   "types": "dist/index.d.ts",
+  "targets": {
+    "main": false,
+    "default": {
+      "isLibrary": true,
+      "includeNodeModules": false,
+      "outputFormat": "commonjs"
+    },
+    "module": {
+      "outputFormat": "esmodule"
+    }
+  },
   "files": [
     "src/",
     "dist/"
