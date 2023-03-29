@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.0] - 2023-03-29
+
+- chore: Use ES6 imports for crypto-js to reduce bundle size
+
+### Contributors
+
+- [gretchenfitze]
+
 ## [3.0.0] - 2022-03-28
 
 - feat!: depend on crypto-js for node/browser compatibility. Using Typescript with Parcel.
@@ -53,8 +61,10 @@ import pkceChallenge from "pkce-challenge";
 
 - [lordnox]
 
+[gretchenfitze]: https://github.com/gretchenfitze
 [seyyedkhandon]: https://github.com/SeyyedKhandon
 [lordnox]: https://github.com/lordnox
+[3.1.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/3.1.0
 [3.0.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/3.0.0
 [2.2.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.2.0
 [2.1.0]: https://github.com/crouchcd/pkce-challenge/releases/tag/2.1.0
