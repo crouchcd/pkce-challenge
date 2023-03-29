@@ -1,4 +1,6 @@
-import { lib, SHA256, enc } from "crypto-js";
+import libWordArray from "crypto-js/lib-typedarrays";
+import SHA256 from "crypto-js/sha256";
+import encBase64url from "crypto-js/enc-base64url";
 
 /**
  * Thanks to @SEIAROTg on stackoverflow:
@@ -19,7 +21,7 @@ function toBytesInt32(num: number) {
  * @returns Array of random ints (0 to 255)
  */
 function getRandomValues(size: number) {
-  const randoms = lib.WordArray.random(size);
+  const randoms = libWordArray.random(size);
   const randoms1byte: number[] = [];
 
   randoms.words.forEach((word) => {
@@ -63,7 +65,7 @@ function generateVerifier(length: number): string {
  * @returns The base64 url encoded code challenge
  */
 export function generateChallenge(code_verifier: string) {
-  return SHA256(code_verifier).toString(enc.Base64url);
+  return SHA256(code_verifier).toString(encBase64url);
 }
 
 /** Generate a PKCE challenge pair
