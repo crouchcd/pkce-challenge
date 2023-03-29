@@ -1,0 +1,17 @@
+{
+  "projects": [
+    {
+      "displayName": "CommonJS",
+      "testMatch": ["**/*.commonjs.test.js"],
+      "testEnvironment": "node"
+    },
+    {
+      "displayName": "ESM",
+      "testMatch": ["**/*.esm.test.js"],
+      "testEnvironment": "node",
+      "transform": {
+        "^.+\\.js?$": "babel-jest"
+      }
+    }
+  ]
+}
