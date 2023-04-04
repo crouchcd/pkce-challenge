@@ -1,19 +1,6 @@
-import libWordArray from "crypto-js/lib-typedarrays";
-import SHA256 from "crypto-js/sha256";
-import encBase64url from "crypto-js/enc-base64url";
+import type { webcrypto } from 'node:crypto';
 
-/**
- * Thanks to @SEIAROTg on stackoverflow:
- * "Convert a 32bit integer into 4 bytes of data in javascript"
- * @param num The 32bit integer
- * @returns An ArrayBuffer representing 4 bytes of binary data
- */
-function toBytesInt32(num: number) {
-  const arr = new ArrayBuffer(4); // an Int32 takes 4 bytes
-  const view = new DataView(arr);
-  view.setUint32(0, num, false); // byteOffset = 0; litteEndian = false
-  return arr;
-}
+let crypto: webcrypto.Crypto = globalThis.crypto ?? (await import('node:crypto')).webcrypto;
 
 /**
  * Creates an array of length `size` of random bytes
@@ -21,18 +8,7 @@ function toBytesInt32(num: number) {
  * @returns Array of random ints (0 to 255)
  */
 function getRandomValues(size: number) {
-  const randoms = libWordArray.random(size);
-  const randoms1byte: number[] = [];
-
-  randoms.words.forEach((word) => {
-    const arr = toBytesInt32(word);
-    const fourByteWord = new Uint8Array(arr);
-    for (let i = 0; i < 4; i++) {
-      randoms1byte.push(fourByteWord[i]);
-    }
-  });
-
-  return randoms1byte;
+  return crypto.getRandomValues(new Uint8Array(size));
 }
 
 /** Generate cryptographically strong random string
@@ -64,18 +40,26 @@ function generateVerifier(length: number): string {
  * @param code_verifier
  * @returns The base64 url encoded code challenge
  */
-export function generateChallenge(code_verifier: string) {
-  return SHA256(code_verifier).toString(encBase64url);
+export async function generateChallenge(code_verifier: string) {
+  const buffer = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(code_verifier)
+  );
+  // Generate base64url string
+  return btoa(String.fromCharCode(...new Uint8Array(buffer)))
+    .replace(/\//g, '_')
+    .replace(/\+/g, '-')
+    .replace(/=/g, '');
 }
 
 /** Generate a PKCE challenge pair
  * @param length Length of the verifer (between 43-128). Defaults to 43.
  * @returns PKCE challenge pair
  */
-export default function pkceChallenge(length?: number): {
+export default async function pkceChallenge(length?: number): Promise<{
   code_verifier: string;
   code_challenge: string;
-} {
+}> {
   if (!length) length = 43;
 
   if (length < 43 || length > 128) {
@@ -83,7 +67,7 @@ export default function pkceChallenge(length?: number): {
   }
 
   const verifier = generateVerifier(length);
-  const challenge = generateChallenge(verifier);
+  const challenge = await generateChallenge(verifier);
 
   return {
     code_verifier: verifier,
@@ -96,10 +80,10 @@ export default function pkceChallenge(length?: number): {
  * @param expectedChallenge The code challenge to verify
  * @returns True if challenges are equal. False otherwise.
  */
-export function verifyChallenge(
+export async function verifyChallenge(
   code_verifier: string,
   expectedChallenge: string
 ) {
-  const actualChallenge = generateChallenge(code_verifier);
+  const actualChallenge = await generateChallenge(code_verifier);
   return actualChallenge === expectedChallenge;
 }
