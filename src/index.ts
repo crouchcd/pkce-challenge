@@ -1,6 +1,6 @@
 import type { webcrypto } from 'node:crypto';
 
-let crypto: webcrypto.Crypto = globalThis.crypto ?? (await import('node:crypto')).webcrypto;
+const crypto: webcrypto.Crypto = globalThis.crypto ?? (await import('node:crypto')).webcrypto;
 
 /**
  * Creates an array of length `size` of random bytes
