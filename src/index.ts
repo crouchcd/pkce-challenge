@@ -1,6 +1,6 @@
-import libWordArray from "crypto-js/lib-typedarrays";
-import SHA256 from "crypto-js/sha256";
-import encBase64url from "crypto-js/enc-base64url";
+import libWordArray from "crypto-js/lib-typedarrays.js";
+import SHA256 from "crypto-js/sha256.js";
+import encBase64url from "crypto-js/enc-base64url.js";
 
 /**
  * Thanks to @SEIAROTg on stackoverflow:
