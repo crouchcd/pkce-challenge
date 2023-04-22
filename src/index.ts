@@ -49,6 +49,8 @@ export async function generateChallenge(code_verifier: string) {
     new TextEncoder().encode(code_verifier)
   );
   // Generate base64url string
+  // btoa is deprecated in Node.js but is used here for web browser compatibility
+  // (which has no good replacement yet, see also https://github.com/lucacasonato/proposal-binary-encoding)
   return btoa(String.fromCharCode(...new Uint8Array(buffer)))
     .replace(/\//g, '_')
     .replace(/\+/g, '-')
