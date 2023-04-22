@@ -1,6 +1,9 @@
 import type { webcrypto } from 'node:crypto';
 
-const crypto: webcrypto.Crypto = globalThis.crypto ?? (await import('node:crypto')).webcrypto;
+const crypto: webcrypto.Crypto =
+  globalThis.crypto?.webcrypto ?? // Node.js 16 REPL has globalThis.crypto as node:crypto
+  globalThis.crypto ?? // web browsers and Node.js 18+ 
+  (await import("node:crypto")).webcrypto; // Node.js 16 non-REPL
 
 /**
  * Creates an array of length `size` of random bytes
