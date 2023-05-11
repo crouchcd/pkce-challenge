@@ -15,11 +15,9 @@ npm install pkce-challenge
 Default length for the verifier is 43
 
 ```js
-import pkceChallenge from 'pkce-challenge'
-// or require with commonjs
-const pkceChallenge = require("pkce-challenge").default;
+import pkceChallenge from "pkce-challenge";
 
-pkceChallenge();
+await pkceChallenge();
 ```
 
 gives something like:
@@ -34,7 +32,7 @@ gives something like:
 ### Specify a verifier length
 
 ```js
-const challenge = pkceChallenge(128);
+const challenge = await pkceChallenge(128);
 
 challenge.code_verifier.length === 128; // true
 ```
@@ -44,7 +42,8 @@ challenge.code_verifier.length === 128; // true
 ```js
 import { verifyChallenge } from "pkce-challenge";
 
-verifyChallenge(challenge.code_verifier, challenge.code_challenge) === true; // true
+(await verifyChallenge(challenge.code_verifier, challenge.code_challenge)) ===
+  true; // true
 ```
 
 ### Challenge generation from existing code verifier
@@ -52,5 +51,5 @@ verifyChallenge(challenge.code_verifier, challenge.code_challenge) === true; // 
 ```js
 import { generateChallenge } from "pkce-challenge";
 
-generateChallenge(challenge.code_verifier) === challenge.code_challenge; // true
+(await generateChallenge(challenge.code_verifier)) === challenge.code_challenge; // true
 ```
