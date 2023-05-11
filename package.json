@@ -28,6 +28,9 @@
     "url": "https://github.com/crouchcd/pkce-challenge/issues"
   },
   "homepage": "https://github.com/crouchcd/pkce-challenge#readme",
+  "engines": {
+    "node": ">=16.20.0"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
