@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.0](https://github.com/crouchcd/pkce-challenge/releases/tag/4.0.0) - 2023-05-11
+
+- BREAKING CHANGE: Use Web Cryptography API (#20), closes #21, #18
+
+### Contributors
+
+- [saschanaz](https://github.com/saschanaz)
+
 ## [3.1.0] - 2023-03-29
 
 - chore: Use ES6 imports for crypto-js to reduce bundle size
