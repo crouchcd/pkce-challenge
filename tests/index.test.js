@@ -1,4 +1,4 @@
-import pkceChallenge, { verifyChallenge, generateChallenge } from "../dist/index";
+import pkceChallenge, { verifyChallenge, generateChallenge } from "../dist/index.node";
 
 test("default verifier length is 43", async () => {
   expect((await pkceChallenge()).code_verifier.length).toBe(43);
