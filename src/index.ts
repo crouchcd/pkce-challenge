@@ -1,9 +1,8 @@
 import type { webcrypto } from 'node:crypto';
 
-const crypto: webcrypto.Crypto =
-  globalThis.crypto?.webcrypto ?? // Node.js 16 REPL has globalThis.crypto as node:crypto
-  globalThis.crypto ?? // web browsers and Node.js 18+ 
-  (await import("node:crypto")).webcrypto; // Node.js 16 non-REPL
+// XXX: @types/node still doesn't have this global variable; declare it explicitly.
+// https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/66675
+declare var crypto: webcrypto.Crypto;
 
 /**
  * Creates an array of length `size` of random bytes
