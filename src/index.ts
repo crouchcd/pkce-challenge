@@ -1,9 +1,15 @@
 import type { webcrypto } from 'node:crypto';
 
-const crypto: webcrypto.Crypto =
+let crypto: webcrypto.Crypto;
+
+// diverge:if env=browser
+crypto = globalThis.crypto; // web browsers
+// diverge:else
+crypto =
   globalThis.crypto?.webcrypto ?? // Node.js 16 REPL has globalThis.crypto as node:crypto
-  globalThis.crypto ?? // web browsers and Node.js 18+ 
+  globalThis.crypto ?? // Node.js 18+ 
   (await import("node:crypto")).webcrypto; // Node.js 16 non-REPL
+// diverge:fi
 
 /**
  * Creates an array of length `size` of random bytes
