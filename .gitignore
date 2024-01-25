@@ -6,3 +6,4 @@ dist/
 .vscode/
 src/index.browser.ts
 src/index.node.ts
+browser-test/index.out.js
