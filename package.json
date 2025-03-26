@@ -7,12 +7,21 @@
   "browser": "dist/index.browser.js",
   "type": "module",
   "types": "dist/index.node.d.ts",
+  "exports": {
+    ".": {
+      "browser": "./dist/index.browser.js",
+      "node": {
+        "import": "./dist/index.node.js",
+        "require": "./dist/index.node.cjs"
+      }
+    }
+  },
   "files": [
     "dist/"
   ],
   "scripts": {
     "watch": "tsc --watch --declaration",
-    "preprocess": "env=browser diverge -f src/index.ts src/index.browser.ts && env=node diverge -f src/index.ts src/index.node.ts",
+    "preprocess": "env=browser diverge -f src/index.ts src/index.browser.ts && env=node diverge -f src/index.ts src/index.node.ts && env=node diverge -f src/index.ts src/index.node.cts",
     "build": "npm run preprocess && tsc --declaration",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:bundle": "esbuild browser-test/index.js --bundle --outfile=browser-test/index.out.js"
