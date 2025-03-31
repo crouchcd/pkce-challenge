@@ -28,7 +28,7 @@
     "preprocess": "env=browser diverge -f src/index.ts src/index.browser.ts && env=node diverge -f src/index.ts src/index.node.ts && env=node diverge -f src/index.ts src/index.node.cts",
     "build": "npm run preprocess && tsc --declaration",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:bundle": "esbuild browser-test/index.js --bundle --outfile=browser-test/index.out.js"
+    "test:bundle": "npm run --prefix browser-test build"
   },
   "repository": {
     "type": "git",

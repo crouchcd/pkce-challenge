@@ -1,4 +1,4 @@
-import * as pkce from "../dist/index.browser";
+import * as pkce from "pkce-challenge";
 
 async function App() {
   const results = await pkce.default();
