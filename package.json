@@ -1,6 +1,6 @@
 {
   "name": "pkce-challenge",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "description": "Generate or verify a Proof Key for Code Exchange (PKCE) challenge pair",
   "browser": "dist/index.browser.js",
   "type": "module",
