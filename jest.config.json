@@ -1,8 +1,7 @@
 {
   "projects": [
     {
-      "displayName": "ESM",
-      "testMatch": ["**/*.test.js"],
+      "testMatch": ["**/*.test.?(c)js"],
       "testEnvironment": "node"
     }
   ]
