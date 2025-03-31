@@ -2,14 +2,18 @@
   "name": "pkce-challenge",
   "version": "4.1.0",
   "description": "Generate or verify a Proof Key for Code Exchange (PKCE) challenge pair",
-  "source": "src/index.ts",
-  "main": "dist/index.node.js",
   "browser": "dist/index.browser.js",
   "type": "module",
-  "types": "dist/index.node.d.ts",
   "exports": {
     ".": {
-      "browser": "./dist/index.browser.js",
+      "types": {
+        "require": "./dist/index.node.d.cts",
+        "import": "./dist/index.node.d.ts"
+      },
+      "browser": {
+        "types": "./dist/index.browser.d.ts",
+        "default": "./dist/index.browser.js"
+      },
       "node": {
         "import": "./dist/index.node.js",
         "require": "./dist/index.node.cjs"

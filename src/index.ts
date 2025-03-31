@@ -3,12 +3,12 @@ import type { webcrypto } from 'node:crypto';
 let crypto: webcrypto.Crypto | Promise<webcrypto.Crypto>;
 
 // diverge:if env=browser
-crypto = globalThis.crypto; // web browsers
+crypto = globalThis.crypto as webcrypto.Crypto; // web browsers
 // diverge:else
 crypto =
-  globalThis.crypto?.webcrypto ?? // Node.js 16 REPL has globalThis.crypto as node:crypto
-  globalThis.crypto ?? // Node.js 18+
-  import("node:crypto").then(m => m.webcrypto); // Node.js 16 non-REPL
+  (globalThis.crypto as any)?.webcrypto ?? // Node.js [18-16] REPL
+  globalThis.crypto ?? // Node.js >18
+  import("node:crypto").then(m => m.webcrypto); // Node.js <18 Non-REPL
 // diverge:fi
 
 /**
