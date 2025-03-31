@@ -2,7 +2,7 @@
   "name": "browser-test",
   "version": "1.0.0",
   "scripts": {
-    "build": "esbuild index.js --bundle --outfile=index.out.js",
+    "build": "npm install && esbuild index.js --bundle --outfile=index.out.js",
     "serve": "http-server"
   },
   "dependencies": {
