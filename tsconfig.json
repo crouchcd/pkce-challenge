@@ -1,12 +1,11 @@
 {
-  "compilerOptions": {
-    "target": "es2022",
-    "module": "Node16",
-    "outDir": "dist"
-  },
-  "files": [
-    "src/index.browser.ts",
-    "src/index.node.ts",
-    "src/index.node.cts"
+  "files": [],
+  "references": [
+    {
+      "path": "tsconfig.cjs.json"
+    },
+    {
+      "path": "tsconfig.esm.json"
+    }
   ]
 }

@@ -4,7 +4,4 @@ node_modules/
 dist/
 .parcel-cache/
 .vscode/
-src/index.browser.ts
-src/index.node.ts
-src/index.node.cts
 browser-test/index.out.js
