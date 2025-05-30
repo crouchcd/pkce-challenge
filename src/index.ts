@@ -1,34 +1,23 @@
-import type { webcrypto } from 'node:crypto';
-
-let crypto: webcrypto.Crypto | Promise<webcrypto.Crypto>;
-
-// diverge:if env=browser
-crypto = globalThis.crypto as webcrypto.Crypto; // web browsers
-// diverge:else
-crypto =
-  (globalThis.crypto as any)?.webcrypto ?? // Node.js [18-16] REPL
-  globalThis.crypto ?? // Node.js >18
-  import("node:crypto").then(m => m.webcrypto); // Node.js <18 Non-REPL
-// diverge:fi
+import crypto from "uncrypto";
 
 /**
  * Creates an array of length `size` of random bytes
  * @param size
  * @returns Array of random ints (0 to 255)
  */
-async function getRandomValues(size: number) {
-  return (await crypto).getRandomValues(new Uint8Array(size));
+function getRandomValues(size: number) {
+  return crypto.getRandomValues(new Uint8Array(size));
 }
 
 /** Generate cryptographically strong random string
  * @param size The desired length of the string
  * @returns The random string
  */
-async function random(size: number) {
+function random(size: number) {
   const mask =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";
   let result = "";
-  const randomUints = await getRandomValues(size);
+  const randomUints = getRandomValues(size);
   for (let i = 0; i < size; i++) {
     // cap the value of the randomIndex to mask.length - 1
     const randomIndex = randomUints[i] % mask.length;
@@ -41,8 +30,8 @@ async function random(size: number) {
  * @param length Length of the verifier
  * @returns A random verifier `length` characters long
  */
-async function generateVerifier(length: number): Promise<string> {
-  return await random(length);
+function generateVerifier(length: number): string {
+  return random(length);
 }
 
 /** Generate a PKCE code challenge from a code verifier
@@ -50,7 +39,7 @@ async function generateVerifier(length: number): Promise<string> {
  * @returns The base64 url encoded code challenge
  */
 export async function generateChallenge(code_verifier: string) {
-  const buffer = await (await crypto).subtle.digest(
+  const buffer = await crypto.subtle.digest(
     "SHA-256",
     new TextEncoder().encode(code_verifier)
   );
@@ -77,7 +66,7 @@ export default async function pkceChallenge(length?: number): Promise<{
     throw `Expected a length between 43 and 128. Received ${length}.`;
   }
 
-  const verifier = await generateVerifier(length);
+  const verifier = generateVerifier(length);
   const challenge = await generateChallenge(verifier);
 
   return {
