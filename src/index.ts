@@ -28,11 +28,9 @@ async function random(size: number) {
   const mask =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";
   let result = "";
-  const randomUints = await getRandomValues(size);
-  for (let i = 0; i < size; i++) {
-    // cap the value of the randomIndex to mask.length - 1
-    const randomIndex = randomUints[i] % mask.length;
-    result += mask[randomIndex];
+  while(result.length < size) {
+    const randomByte = (await getRandomValues(1))[0];
+    if(randomByte < mask.length) result += mask[randomByte];
   }
   return result;
 }
