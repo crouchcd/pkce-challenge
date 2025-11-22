@@ -27,13 +27,19 @@ async function getRandomValues(size: number) {
 async function random(size: number) {
   const mask =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";
+  const evenDistCutoff = Math.pow(2, 8) - Math.pow(2, 8) % mask.length;
+
   let result = "";
-  const randomUints = await getRandomValues(size);
-  for (let i = 0; i < size; i++) {
-    // cap the value of the randomIndex to mask.length - 1
-    const randomIndex = randomUints[i] % mask.length;
-    result += mask[randomIndex];
+  while(result.length < size) {
+    const randomBytes = await getRandomValues(size - result.length);
+
+    for(const randomByte of randomBytes) {
+        if(randomByte < evenDistCutoff) {
+            result += mask[randomByte % mask.length];
+        }
+    }
   }
+
   return result;
 }
 
