@@ -21,7 +21,8 @@
     }
   },
   "files": [
-    "dist/"
+    "dist/",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "watch": "tsc --watch --declaration",
