@@ -11,6 +11,9 @@ crypto =
   import("node:crypto").then(m => m.webcrypto); // Node.js <18 Non-REPL
 // diverge:fi
 
+/** PKCE challenge method types */
+export type PKCEChallengeMethod = "S256" | "plain";
+
 /**
  * Creates an array of length `size` of random bytes
  * @param size
@@ -53,9 +56,17 @@ async function generateVerifier(length: number): Promise<string> {
 
 /** Generate a PKCE code challenge from a code verifier
  * @param code_verifier
- * @returns The base64 url encoded code challenge
+ * @param method The challenge method to use (defaults to "S256")
+ * @returns The base64 url encoded code challenge (or plain verifier if method is "plain")
  */
-export async function generateChallenge(code_verifier: string) {
+export async function generateChallenge(
+  code_verifier: string,
+  method: PKCEChallengeMethod = "S256"
+) {
+  if (method === "plain") {
+    return code_verifier;
+  }
+
   const buffer = await (await crypto).subtle.digest(
     "SHA-256",
     new TextEncoder().encode(code_verifier)
@@ -71,36 +82,45 @@ export async function generateChallenge(code_verifier: string) {
 
 /** Generate a PKCE challenge pair
  * @param length Length of the verifer (between 43-128). Defaults to 43.
+ * @param method The challenge method to use. Defaults to "S256".
  * @returns PKCE challenge pair
  */
-export default async function pkceChallenge(length?: number): Promise<{
+export default async function pkceChallenge(
+  length?: number,
+  method?: PKCEChallengeMethod
+): Promise<{
   code_verifier: string;
   code_challenge: string;
+  code_challenge_method: PKCEChallengeMethod;
 }> {
   if (!length) length = 43;
+  if (!method) method = "S256";
 
   if (length < 43 || length > 128) {
     throw `Expected a length between 43 and 128. Received ${length}.`;
   }
 
   const verifier = await generateVerifier(length);
-  const challenge = await generateChallenge(verifier);
+  const challenge = await generateChallenge(verifier, method);
 
   return {
     code_verifier: verifier,
     code_challenge: challenge,
+    code_challenge_method: method,
   };
 }
 
 /** Verify that a code_verifier produces the expected code challenge
  * @param code_verifier
  * @param expectedChallenge The code challenge to verify
+ * @param method The challenge method used (defaults to "S256")
  * @returns True if challenges are equal. False otherwise.
  */
 export async function verifyChallenge(
   code_verifier: string,
-  expectedChallenge: string
+  expectedChallenge: string,
+  method: PKCEChallengeMethod = "S256"
 ) {
-  const actualChallenge = await generateChallenge(code_verifier);
+  const actualChallenge = await generateChallenge(code_verifier, method);
   return actualChallenge === expectedChallenge;
 }
