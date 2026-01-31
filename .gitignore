@@ -8,3 +8,7 @@ src/index.browser.ts
 src/index.node.ts
 src/index.node.cts
 browser-test/index.out.js
+browser-test/package-lock.json
+browser-test/node_modules/
+cypress/videos/
+cypress/screenshots/
