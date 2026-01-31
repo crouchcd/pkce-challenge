@@ -8,3 +8,5 @@ src/index.browser.ts
 src/index.node.ts
 src/index.node.cts
 browser-test/index.out.js
+cypress/videos/
+cypress/screenshots/
