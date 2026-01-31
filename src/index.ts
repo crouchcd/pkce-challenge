@@ -29,7 +29,7 @@ async function getRandomValues(size: number) {
  */
 async function random(size: number) {
   const mask =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_";
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";
   const evenDistCutoff = Math.pow(2, 8) - Math.pow(2, 8) % mask.length;
 
   let result = "";

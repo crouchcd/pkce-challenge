@@ -13,7 +13,7 @@ test("default verifier length is 43", async () => {
 });
 
 test("code_verifier pattern matches", async () => {
-  const pattern = /^[A-Za-z\d\-_]{43,128}$/;
+  const pattern = /^[A-Za-z\d\-._~]{43,128}$/;
   const challengePair = await pkceChallenge(128);
 
   expect(challengePair.code_verifier).toMatch(pattern);
