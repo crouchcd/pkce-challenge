@@ -25,3 +25,9 @@ jobs:
           npm run build
           npm test
           npm run test:bundle
+      - name: Run Cypress e2e tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run serve
+          wait-on: 'http://localhost:8080'
+          wait-on-timeout: 60

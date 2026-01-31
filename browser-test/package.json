@@ -2,13 +2,9 @@
   "name": "browser-test",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm install && esbuild index.js --bundle --outfile=index.out.js",
-    "serve": "http-server"
+    "build": "npm install && esbuild index.js --bundle --outfile=index.out.js"
   },
   "dependencies": {
     "pkce-challenge": "file:.."
-  },
-  "devDependencies": {
-    "http-server": "^14.1.1"
   }
 }
