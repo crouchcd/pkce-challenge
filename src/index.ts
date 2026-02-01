@@ -66,6 +66,9 @@ export async function generateChallenge(
   if (method === "plain") {
     return code_verifier;
   }
+  if (method !== "S256") {
+    throw new Error(`Unsupported PKCE challenge method: ${method}`);
+  }
 
   const buffer = await (
     await crypto
@@ -91,7 +94,9 @@ export default async function pkceChallenge(
   if (!method) method = "S256";
 
   if (length < 43 || length > 128) {
-    throw `Expected a length between 43 and 128. Received ${length}.`;
+    throw new Error(
+      `Expected a length between 43 and 128. Received ${length}.`,
+    );
   }
 
   const verifier = await generateVerifier(length);

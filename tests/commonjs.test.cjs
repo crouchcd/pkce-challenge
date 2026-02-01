@@ -26,13 +26,13 @@ test("code_challenge pattern doesn't have [=+/]", async () => {
 });
 
 test("verifier length < 43 throws error", async () => {
-  await expect(pkceChallenge.default(42)).rejects.toStrictEqual(
+  await expect(pkceChallenge.default(42)).rejects.toThrow(
     "Expected a length between 43 and 128. Received 42."
   );
 });
 
 test("verifier length > 128 throws error", async () => {
-  await expect(pkceChallenge.default(129)).rejects.toStrictEqual(
+  await expect(pkceChallenge.default(129)).rejects.toThrow(
     "Expected a length between 43 and 128. Received 129."
   );
 });
@@ -124,4 +124,22 @@ test("verifyChallenge fails when wrong method is used", async () => {
       "plain"
     )
   ).toBe(false);
+});
+
+test("generateChallenge throws error for unsupported method", async () => {
+  const code_verifier = "test_verifier_with_correct_length_for_test";
+  await expect(generateChallenge(code_verifier, "invalid")).rejects.toThrow(
+    "Unsupported PKCE challenge method: invalid"
+  );
+});
+
+test("verifyChallenge throws error for unsupported method", async () => {
+  const challengePair = await pkceChallenge.default();
+  await expect(
+    verifyChallenge(
+      challengePair.code_verifier,
+      challengePair.code_challenge,
+      "invalid"
+    )
+  ).rejects.toThrow("Unsupported PKCE challenge method: invalid");
 });
