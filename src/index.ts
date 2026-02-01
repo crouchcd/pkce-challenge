@@ -28,10 +28,11 @@ async function getRandomValues(size: number) {
  * @param buffer The octets to encode
  * @returns Base64url encoded string without padding
  */
-function base64urlEncode(buffer: ArrayBuffer): string {
+function base64urlEncode(buffer: ArrayBuffer | Uint8Array): string {
   // btoa is deprecated in Node.js but is used here for web browser compatibility
   // (which has no good replacement yet, see also https://github.com/whatwg/html/issues/6811)
-  return btoa(String.fromCharCode(...new Uint8Array(buffer)))
+  const bytes = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
+  return btoa(String.fromCharCode(...bytes))
     .replace(/\+/g, "-")
     .replace(/\//g, "_")
     .replace(/=/g, "");
@@ -48,7 +49,7 @@ async function generateVerifier(length: number): Promise<string> {
   // `length` characters after encoding
   const octetSize = Math.ceil((length * 3) / 4);
   const octets = await getRandomValues(octetSize);
-  const encoded = base64urlEncode(octets.buffer);
+  const encoded = base64urlEncode(octets);
 
   // Trim to exact length requested (base64url encoding may produce slightly more)
   return encoded.slice(0, length);
