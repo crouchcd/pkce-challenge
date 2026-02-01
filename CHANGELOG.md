@@ -1,32 +1,53 @@
 # Changelog
 
+## [6.0.0](https://github.com/crouchcd/pkce-challenge/releases/tag/6.0.0) - 2026-02-01
+
+## Breaking Changes
+
+- `code_challenge_method` is now included in the return type in https://github.com/crouchcd/pkce-challenge/pull/41
+
+## What's Changed
+
+- build(deps-dev): bump qs from 6.14.0 to 6.14.1 in /browser-test by @dependabot[bot] in https://github.com/crouchcd/pkce-challenge/pull/39
+- build(deps-dev): bump js-yaml from 3.14.1 to 3.14.2 by @dependabot[bot] in https://github.com/crouchcd/pkce-challenge/pull/36
+- Add Cypress e2e tests for browser bundle verification by @Copilot in https://github.com/crouchcd/pkce-challenge/pull/42
+- Add code_challenge_method to return type and support configurable PKCE methods by @Copilot in https://github.com/crouchcd/pkce-challenge/pull/41
+
+**Full Changelog**: https://github.com/crouchcd/pkce-challenge/compare/5.0.1...6.0.0
+
 ## [5.0.1](https://github.com/crouchcd/pkce-challenge/releases/tag/5.0.1) - 2025-11-22
 
 ## What's Changed
-* Use even distribution by @RobinVdBroeck in https://github.com/crouchcd/pkce-challenge/pull/38
+
+- Use even distribution by @RobinVdBroeck in https://github.com/crouchcd/pkce-challenge/pull/38
 
 ## New Contributors
-* @RobinVdBroeck made their first contribution in https://github.com/crouchcd/pkce-challenge/pull/38
+
+- @RobinVdBroeck made their first contribution in https://github.com/crouchcd/pkce-challenge/pull/38
 
 **Full Changelog**: https://github.com/crouchcd/pkce-challenge/compare/5.0.0...5.0.1
 
 ## [5.0.0](https://github.com/crouchcd/pkce-challenge/releases/tag/5.0.0) - 2025-03-30
 
 ## What's Changed
-* fix: add support for commonjs module by @li-yechao in https://github.com/crouchcd/pkce-challenge/pull/32
+
+- fix: add support for commonjs module by @li-yechao in https://github.com/crouchcd/pkce-challenge/pull/32
 
 ## New Contributors
-* @li-yechao made their first contribution in https://github.com/crouchcd/pkce-challenge/pull/32
+
+- @li-yechao made their first contribution in https://github.com/crouchcd/pkce-challenge/pull/32
 
 **Full Changelog**: https://github.com/crouchcd/pkce-challenge/compare/4.1.0...5.0.0
 
 ## [4.1.0](https://github.com/crouchcd/pkce-challenge/releases/tag/4.1.0) - 2024-01-25
 
 ## What's Changed
-* Separate entrypoints for node and browser by @mdarocha in https://github.com/crouchcd/pkce-challenge/pull/25
+
+- Separate entrypoints for node and browser by @mdarocha in https://github.com/crouchcd/pkce-challenge/pull/25
 
 ## New Contributors
-* @mdarocha made their first contribution in https://github.com/crouchcd/pkce-challenge/pull/25
+
+- @mdarocha made their first contribution in https://github.com/crouchcd/pkce-challenge/pull/25
 
 **Full Changelog**: https://github.com/crouchcd/pkce-challenge/compare/4.0.1...4.1.0
 
