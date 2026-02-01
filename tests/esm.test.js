@@ -28,15 +28,22 @@ test("code_challenge pattern doesn't have [=+/]", async () => {
 });
 
 test("verifier length < 43 throws error", async () => {
-  await expect(pkceChallenge(42)).rejects.toStrictEqual(
+  await expect(pkceChallenge(42)).rejects.toThrow(
     "Expected a length between 43 and 128. Received 42."
   );
 });
 
 test("verifier length > 128 throws error", async () => {
-  await expect(pkceChallenge(129)).rejects.toStrictEqual(
+  await expect(pkceChallenge(129)).rejects.toThrow(
     "Expected a length between 43 and 128. Received 129."
   );
+});
+
+test('every verifier length from 43 to 128 is valid', async () => {
+  for (let length = 43; length <= 128; length++) {
+    const challengePair = await pkceChallenge(length);
+    expect(challengePair.code_verifier.length).toBe(length);
+  }
 });
 
 test("verifyChallenge should return true", async () => {
@@ -63,4 +70,85 @@ test("generateChallenge should create a consistent challenge from a code_verifie
   const challengePair = await pkceChallenge();
   const code_challenge = await generateChallenge(challengePair.code_verifier);
   expect(code_challenge).toBe(challengePair.code_challenge);
+});
+
+test("default challenge method is S256", async () => {
+  const challengePair = await pkceChallenge();
+  expect(challengePair.code_challenge_method).toBe("S256");
+});
+
+test("can specify S256 challenge method", async () => {
+  const challengePair = await pkceChallenge(43, "S256");
+  expect(challengePair.code_challenge_method).toBe("S256");
+  expect(challengePair.code_challenge).not.toBe(challengePair.code_verifier);
+});
+
+test("can specify plain challenge method", async () => {
+  const challengePair = await pkceChallenge(43, "plain");
+  expect(challengePair.code_challenge_method).toBe("plain");
+  expect(challengePair.code_challenge).toBe(challengePair.code_verifier);
+});
+
+test("plain method returns verifier as challenge", async () => {
+  const code_verifier = "test_verifier_with_correct_length_for_plain";
+  const code_challenge = await generateChallenge(code_verifier, "plain");
+  expect(code_challenge).toBe(code_verifier);
+});
+
+test("S256 method returns hashed challenge", async () => {
+  const code_verifier = "test_verifier_with_correct_length_for_hash";
+  const code_challenge = await generateChallenge(code_verifier, "S256");
+  expect(code_challenge).not.toBe(code_verifier);
+  expect(code_challenge.length).toBeGreaterThan(0);
+});
+
+test("verifyChallenge works with plain method", async () => {
+  const challengePair = await pkceChallenge(43, "plain");
+  expect(
+    await verifyChallenge(
+      challengePair.code_verifier,
+      challengePair.code_challenge,
+      "plain"
+    )
+  ).toBe(true);
+});
+
+test("verifyChallenge works with S256 method", async () => {
+  const challengePair = await pkceChallenge(43, "S256");
+  expect(
+    await verifyChallenge(
+      challengePair.code_verifier,
+      challengePair.code_challenge,
+      "S256"
+    )
+  ).toBe(true);
+});
+
+test("verifyChallenge fails when wrong method is used", async () => {
+  const challengePair = await pkceChallenge(43, "S256");
+  expect(
+    await verifyChallenge(
+      challengePair.code_verifier,
+      challengePair.code_challenge,
+      "plain"
+    )
+  ).toBe(false);
+});
+
+test("generateChallenge throws error for unsupported method", async () => {
+  const code_verifier = "test_verifier_with_correct_length_for_test";
+  await expect(generateChallenge(code_verifier, "invalid")).rejects.toThrow(
+    "Unsupported PKCE challenge method: invalid"
+  );
+});
+
+test("verifyChallenge throws error for unsupported method", async () => {
+  const challengePair = await pkceChallenge();
+  await expect(
+    verifyChallenge(
+      challengePair.code_verifier,
+      challengePair.code_challenge,
+      "invalid"
+    )
+  ).rejects.toThrow("Unsupported PKCE challenge method: invalid");
 });
