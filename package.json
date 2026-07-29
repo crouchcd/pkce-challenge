@@ -10,6 +10,7 @@
         "require": "./dist/index.node.d.cts",
         "import": "./dist/index.node.d.ts"
       },
+      "workerd": "./dist/index.browser.js",
       "browser": {
         "types": "./dist/index.browser.d.ts",
         "default": "./dist/index.browser.js"
@@ -17,7 +18,8 @@
       "node": {
         "import": "./dist/index.node.js",
         "require": "./dist/index.node.cjs"
-      }
+      },
+      "default": "./dist/index.browser.js"
     }
   },
   "files": [
