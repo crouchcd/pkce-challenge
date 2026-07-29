@@ -5,14 +5,12 @@ async function resolvedInputs(conditions) {
     stdin: {
       contents: 'import pkceChallenge from "pkce-challenge"; pkceChallenge;',
       resolveDir: process.cwd(),
-      sourcefile: "entry.js",
     },
     bundle: true,
     platform: "neutral",
     conditions,
     write: false,
     metafile: true,
-    logLevel: "silent",
   });
 
   return Object.keys(result.metafile.inputs);
