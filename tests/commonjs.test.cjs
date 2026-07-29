@@ -1,4 +1,4 @@
-const pkceChallenge = require("../dist/index.node.cjs");
+const pkceChallenge = require("pkce-challenge");
 const { verifyChallenge, generateChallenge } = pkceChallenge;
 
 describe("Environment", () => {
