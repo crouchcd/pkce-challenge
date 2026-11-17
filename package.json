@@ -53,6 +53,10 @@
   "engines": {
     "node": ">=16.20.0"
   },
+  "allowScripts": {
+    "cypress": true,
+    "esbuild": true
+  },
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
