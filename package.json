@@ -1,6 +1,6 @@
 {
   "name": "pkce-challenge",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Generate or verify a Proof Key for Code Exchange (PKCE) challenge pair",
   "browser": "dist/index.browser.js",
   "type": "module",
@@ -52,6 +52,10 @@
   "homepage": "https://github.com/crouchcd/pkce-challenge#readme",
   "engines": {
     "node": ">=16.20.0"
+  },
+  "allowScripts": {
+    "cypress": true,
+    "esbuild": true
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",

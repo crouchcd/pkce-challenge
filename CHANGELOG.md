@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.0.1](https://github.com/crouchcd/pkce-challenge/releases/tag/6.0.1) - 2026-11-17
+
+## What's Changed
+
+- fix: expose a Workerd-compatible entrypoint by @onmax in https://github.com/crouchcd/pkce-challenge/pull/50
+
+## New Contributors
+
+- @onmax made their first contribution in https://github.com/crouchcd/pkce-challenge/pull/50
+
+**Full Changelog**: https://github.com/crouchcd/pkce-challenge/compare/6.0.0...6.0.1
+
 ## [6.0.0](https://github.com/crouchcd/pkce-challenge/releases/tag/6.0.0) - 2026-02-01
 
 ## Breaking Changes
