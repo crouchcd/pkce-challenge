@@ -4,7 +4,8 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - "5.x"
+  workflow_call:
 
 jobs:
   build:
@@ -14,9 +15,9 @@ jobs:
         node-version: [16, 18, latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
       - name: npm install, build, and test
