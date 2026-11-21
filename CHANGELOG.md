@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/crouchcd/pkce-challenge/releases/tag/5.0.2) - 2026-11-21
+
+## What's Changed
+* Backport: expose a Workerd-compatible entrypoint by @onmax in https://github.com/crouchcd/pkce-challenge/pull/52
+
+**Full Changelog**: https://github.com/crouchcd/pkce-challenge/compare/5.0.1...5.0.2
+
 ## [5.0.1](https://github.com/crouchcd/pkce-challenge/releases/tag/5.0.1) - 2025-11-22
 
 ## What's Changed
