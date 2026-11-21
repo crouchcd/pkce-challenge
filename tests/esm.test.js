@@ -1,7 +1,7 @@
 import pkceChallenge, {
   verifyChallenge,
   generateChallenge,
-} from "../dist/index.node";
+} from "pkce-challenge";
 
 describe("Environment", () => {
   console.log(process.version);
